@@ -1,0 +1,44 @@
+.item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.item > img {
+  width: 350px;
+}
+
+.item > h1 {
+  color: green;
+  margin-bottom: 10px;
+}
+
+.abilities {
+  display: flex;
+  align-items: center;
+}
+
+.abilities > h2 {
+  font-size: 20px;
+  color: blue;
+}
+
+.abilities > div {
+  margin: 10px;
+  font-size: 18px;
+}
+
+.types {
+  display: flex;
+  align-items: center;
+}
+
+.types > div {
+  margin: 10px;
+  font-size: 18px;
+}
+
+.types > h2 {
+  font-size: 20px;
+  color: red;
+}
