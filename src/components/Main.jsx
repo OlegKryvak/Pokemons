@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import styles from './Main.module.css';
 import Button from '@mui/material/Button';
 import CardItem from "./CardItem";
 import CardInfo from "./CardInfo";
 import axios from 'axios';
-
+import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
 
 
 const Main = () => {
@@ -42,31 +42,44 @@ const Main = () => {
         getPokemonData();  //useEffect calls fuction when url of Next or Prec changes
     }, [url])
 
-    return <div className={styles.container}>
+    return <div>
 
-        <div className={styles.leftPart}>
-            {typeof data !== 'undefined' ? 
-            <CardItem items={data} load={load} infoItem={item => setItemInfo(item)} /> : //cheking data
-            <div></div> 
-            } 
-            <div className={styles.buttons}>
-                {prevPage && <Button variant="contained" color="error" onClick={() => {
-                    setData([]); //reinitialization of state of empty array to  make portions data
-                    setUrl(prevPage); // set url of prev page 
-                }}>
-                    Previous
-                </Button>}
-                {nextPage && <Button variant="contained" color="success" onClick={() => {
-                    setData([])
-                    setUrl(nextPage) // set url of next page 
-                }}>
-                    Next
-                </Button>}
-            </div>
+        <div>
         </div>
-        <div className={styles.rightPart}>
-            <CardInfo itemData={itemInfo} />
-        </div>
+
+        <Box sx={{ flexGrow: 1, p: 3 }}>
+            <Grid container spacing={2} columns={16}>
+                <Grid item xs={10}>
+
+                    {typeof data !== 'undefined' ?
+                        <CardItem items={data} load={load} infoItem={item => setItemInfo(item)} /> : //cheking data
+                        <div></div>
+                    }
+                    <div>
+                        {prevPage && <Button sx={{m: 1, width: '100px' }} variant="contained" color="error" onClick={() => {
+                            setData([]); //reinitialization of state of empty array to  make portions data
+                            setUrl(prevPage); // set url of prev page 
+                        }}>
+                            Previous
+                        </Button>}
+                        {nextPage && <Button sx={{m: 1, width: '100px' }} variant="contained" color="success" onClick={() => {
+                            setData([])
+                            setUrl(nextPage) // set url of next page 
+                        }}>
+                            Next
+                        </Button>}
+                    </div>
+
+
+                </Grid>
+                <Grid item xs={6} >
+                    <Box sx={{display: 'flex', justifyContent: 'center' }}>
+                        <CardInfo itemData={itemInfo} />
+                    </Box>
+                </Grid>
+            </Grid>
+        </Box>
+
     </div>;
 };
 export default Main;

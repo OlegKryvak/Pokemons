@@ -1,43 +1,41 @@
 import React from "react";
-import styles from './CardInfo.module.css';
+import Box from '@mui/material/Box';
+import Card from '@mui/material/Card';
 
 const CardInfo = ({ itemData }) => {
-    function ucFirst(str) { 
-        if (!str) return str;
 
-        return str[0].toUpperCase() + str.slice(1);
-    }
-    return <div className={styles.container}>
+    return <div>
         {
             (!itemData) ? <div></div> : //rendering info about pokemon
-                <div className={styles.item}> 
-                    <img src={itemData.sprites.front_default} alt="poke card"/>
-                    <h1>{ucFirst(itemData.species.name)}</h1>
-                    <div className={styles.abilities}>
+                <Box sx={{ mt: '50px', display: 'flex', justifyContent: 'center', flexDirection: 'column' }}>
+                    <img src={itemData.sprites.front_default} alt="poke card" />
+                    <Box sx={{ fontSize: 40, fontWeight: 900, textTransform: 'capitalize', textAlign: 'center', mb: 1 }}>
+                        {itemData.species.name}</Box>
+                    <Box sx={{ display: 'flex', alignItems: 'center' }}>
                         <h2>Abilities:</h2>
                         {
                             itemData.abilities.map(ability => {
                                 return (
-                                    <div key={ability.ability.url}>
+                                    <Box sx={{ m: 1,  fontSize: 18}} key={ability.ability.url}>
                                         {ability.ability.name}
-                                    </div>
+                                    </Box>
                                 )
                             })
                         }
-                    </div>
-                    <div className={styles.types}>
-                        <h2>Types</h2>
+                    </Box>
+                    <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                        <h2>Types:</h2>
                         {
                             itemData.types.map(type => {
                                 return (
-                                    <div key={type.type.url}>
+                                    <Box sx={{ m: 1, fontSize: 18 }} key={type.type.url}>
                                         {type.type.name}
-                                    </div>
+                                    </Box>
                                 )
                             })
                         }
-                    </div>
-                </div>
+                    </Box>
+                </Box>
         }
     </div>;
 };
